@@ -38,7 +38,10 @@ class PrevMatchAdapter (private val items: List<EventItem>) : RecyclerView.Adapt
         fun bind(event: EventItem){
             home.text = event.home
             away.text = event.away
-            score.text = "${event.homeScore} vs ${event.awayScore}"
+            if (event.homeScore.toString() == "null")
+                score.text = " vs "
+            else
+                score.text = "${event.homeScore} vs ${event.awayScore}"
             date.text = event.date
 
             itemView.setOnClickListener {

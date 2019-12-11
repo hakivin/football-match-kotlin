@@ -16,6 +16,7 @@ import com.hakivin.footballleague.model.LeagueItem
 import com.hakivin.footballleague.remote.Api
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_league.*
+import kotlinx.android.synthetic.main.fragment_overview.*
 import org.jetbrains.anko.find
 
 class LeagueActivity : AppCompatActivity(), LeagueView {
@@ -50,11 +51,11 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.action_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
     override fun showLeague(datas: List<LeagueItem>?) {
         val data = datas?.get(0)
         val collapsingToolbarLayout =

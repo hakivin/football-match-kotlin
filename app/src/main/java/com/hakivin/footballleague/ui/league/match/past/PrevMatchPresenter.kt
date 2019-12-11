@@ -21,7 +21,14 @@ class PrevMatchPresenter(private val view: PrevMatchView,
     fun getPreviousMatches(idLeague: Int?){
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(api.doRequest(TheSportDBApi.getPreviousMatch(idLeague)).await(), EventResponse::class.java)
-            view.showEvents(data.events)
+            view.showPastEvents(data.events)
+        }
+    }
+
+    fun getNextMatches(idLeague: Int?){
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(api.doRequest(TheSportDBApi.getNextMatch(idLeague)).await(), EventResponse::class.java)
+            view.showNextEvents(data.events)
         }
     }
 
@@ -33,7 +40,7 @@ class PrevMatchPresenter(private val view: PrevMatchView,
                 if (event.type.equals("Soccer"))
                     filtered.add(event)
             }
-            view.showEvents(filtered)
+            view.showSearchedEvents(filtered)
         }
     }
 }

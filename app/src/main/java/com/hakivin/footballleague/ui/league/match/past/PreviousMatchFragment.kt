@@ -10,11 +10,12 @@ import com.google.gson.Gson
 import com.hakivin.footballleague.R
 import com.hakivin.footballleague.model.EventItem
 import com.hakivin.footballleague.remote.Api
-import org.jetbrains.anko.support.v4.find
+import kotlinx.android.synthetic.main.fragment_previous_match.*
 import org.jetbrains.anko.support.v4.runOnUiThread
 
 class PreviousMatchFragment : Fragment(), PrevMatchView {
-    private lateinit var rv : RecyclerView
+    private lateinit var rvPrev : RecyclerView
+    private lateinit var rvNext : RecyclerView
     private lateinit var presenter : PrevMatchPresenter
     private var idLeague : Int = 0
     override fun onCreateView(
@@ -27,15 +28,18 @@ class PreviousMatchFragment : Fragment(), PrevMatchView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rv = find(R.id.rv_prev)
+        rvPrev = rv_prev
+        rvNext = rv_next
         val request = Api()
         val gson = Gson()
         presenter = PrevMatchPresenter(this, request, gson)
         presenter.getPreviousMatches(idLeague)
+        presenter.getNextMatches(idLeague)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.action_menu, menu)
         val searchItem = menu.findItem(R.id.searchMenu)
         val searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -61,17 +65,43 @@ class PreviousMatchFragment : Fragment(), PrevMatchView {
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 presenter.getPreviousMatches(idLeague)
+                presenter.getNextMatches(idLeague)
                 return true
             }
 
         })
     }
 
-    override fun showEvents(list: List<EventItem>?) {
+    override fun showPastEvents(list: List<EventItem>?) {
         runOnUiThread {
-            rv.layoutManager = LinearLayoutManager(context)
-            rv.adapter =
-                list?.let { PrevMatchAdapter(it) }
+            rvPrev.layoutManager = LinearLayoutManager(context)
+            rvPrev.adapter = list?.let { PrevMatchAdapter(it) }
+        }
+    }
+
+    override fun showNextEvents(list: List<EventItem>?) {
+        runOnUiThread {
+            rvNext.layoutManager = LinearLayoutManager(context)
+            rvNext.adapter = list?.let { PrevMatchAdapter(it) }
+        }
+    }
+
+    override fun showSearchedEvents(list: List<EventItem>?) {
+        runOnUiThread {
+            val prevList = arrayListOf<EventItem>()
+            val nextList = arrayListOf<EventItem>()
+            if (list != null) {
+                for (event in list){
+                    if (event.homeScore.toString() == "null")
+                        nextList.add(event)
+                    else
+                        prevList.add(event)
+                }
+            }
+            rvPrev.layoutManager = LinearLayoutManager(context)
+            rvNext.layoutManager = LinearLayoutManager(context)
+            rvPrev.adapter = list?.let { PrevMatchAdapter(prevList) }
+            rvNext.adapter = list?.let { PrevMatchAdapter(nextList) }
         }
     }
 }

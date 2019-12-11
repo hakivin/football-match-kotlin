@@ -39,8 +39,7 @@ class FavouriteAdapter (private val items: List<EventItem>) : RecyclerView.Adapt
         fun bind(event: EventItem){
             home.text = event.home
             away.text = event.away
-            println("score = ${event.homeScore}")
-            if (event.homeScore.equals("null"))
+            if (event.homeScore.toString() == "null")
                 score.text = " vs "
             else
                 score.text = "${event.homeScore} vs ${event.awayScore}"

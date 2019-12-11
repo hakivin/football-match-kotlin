@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.league.match.past.PreviousMatchFragment">
+    tools:context=".ui.league.match.past.PreviousMatchFragment"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_prev"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:listitem="@layout/match_item"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prev"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_prev"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            tools:listitem="@layout/match_item"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_next"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            tools:listitem="@layout/match_item"
+            android:layout_weight="1"/>
+
+</LinearLayout>

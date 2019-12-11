@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.hakivin.footballleague.R
-import com.hakivin.footballleague.ui.league.match.next.NextMatchFragment
 import com.hakivin.footballleague.ui.league.match.past.PreviousMatchFragment
+import com.hakivin.footballleague.ui.league.overview.OverviewFragment
+import com.hakivin.footballleague.ui.league.table.TableFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
-    R.string.tab_text_2
+    R.string.tab_text_2,
+    R.string.tab_text_3
 )
 
 /**
@@ -23,10 +25,11 @@ class SectionsPagerAdapter(private val context: Context, private val id: Int?, f
 
     override fun getItem(position: Int): Fragment {
         val fragment : Fragment =
-            if(position == 0)
-                PreviousMatchFragment()
-            else
-                NextMatchFragment()
+            when (position) {
+                0 -> OverviewFragment()
+                1 -> PreviousMatchFragment()
+                else -> TableFragment()
+            }
         val bundle = Bundle()
         if (id != null) {
             bundle.putInt("idLeague", id)
