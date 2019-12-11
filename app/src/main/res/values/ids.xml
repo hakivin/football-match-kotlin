@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="league_badge" type="id"/>
+    <item name="league_tv" type="id"/>
+    <item name="img_badge" type="id" />
+    <item name="viewpager" type="id" />
+</resources>
