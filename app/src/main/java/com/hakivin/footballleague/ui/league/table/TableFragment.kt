@@ -13,6 +13,7 @@ import com.hakivin.footballleague.model.TableItem
 import com.hakivin.footballleague.remote.Api
 import kotlinx.android.synthetic.main.fragment_table.*
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.runOnUiThread
 
 /**
  * A simple [Fragment] subclass.
@@ -36,7 +37,9 @@ class TableFragment : Fragment(), TableView {
     }
 
     override fun getStandings(standings: List<TableItem>?) {
-        rv_table.layoutManager = LinearLayoutManager(ctx)
-        rv_table.adapter = standings?.let { TableAdapter(it) }
+        runOnUiThread {
+            rv_table.layoutManager = LinearLayoutManager(ctx)
+            rv_table.adapter = standings?.let { TableAdapter(it) }
+        }
     }
 }

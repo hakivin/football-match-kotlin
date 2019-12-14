@@ -1,4 +1,4 @@
-package com.hakivin.footballleague.ui.fav
+package com.hakivin.footballleague.ui.fav.event
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

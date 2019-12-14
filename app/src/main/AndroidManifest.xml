@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.fav.team.FavTeamActivity"></activity>
         <activity
             android:name=".ui.team.TeamActivity"
             android:label="@string/title_activity_team"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.fav.FavouriteActivity"
+            android:name=".ui.fav.event.FavouriteActivity"
             android:label="@string/favmatch" />
         <activity
             android:name=".ui.event.EventActivity"

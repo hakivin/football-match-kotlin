@@ -1,4 +1,4 @@
-package com.hakivin.footballleague.ui.fav
+package com.hakivin.footballleague.ui.fav.event
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,13 +8,15 @@ import com.hakivin.footballleague.db.database
 import com.hakivin.footballleague.model.EventItem
 import kotlinx.android.synthetic.main.activity_favourite.*
 
-class FavouriteActivity : AppCompatActivity(), FavouriteView {
+class FavouriteActivity : AppCompatActivity(),
+    FavouriteView {
     private lateinit var presenter : FavouritePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourite)
-        presenter = FavouritePresenter(this)
+        presenter =
+            FavouritePresenter(this)
         presenter.getFavEvents(database)
     }
 
@@ -25,6 +27,7 @@ class FavouriteActivity : AppCompatActivity(), FavouriteView {
 
     override fun getFavEvents(events: List<EventItem>) {
         rv_fav.layoutManager = LinearLayoutManager(applicationContext)
-        rv_fav.adapter = FavouriteAdapter(events)
+        rv_fav.adapter =
+            FavouriteAdapter(events)
     }
 }

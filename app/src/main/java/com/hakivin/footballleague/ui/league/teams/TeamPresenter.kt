@@ -20,4 +20,11 @@ class TeamPresenter (val api: Api,
             view.showTeams(data.team)
         }
     }
+
+    fun searchTeam(query: String?){
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(api.doRequest(TheSportDBApi.searchTeam(query)).await(), TeamResponse::class.java)
+            view.showSearchedTeams(data.team)
+        }
+    }
 }

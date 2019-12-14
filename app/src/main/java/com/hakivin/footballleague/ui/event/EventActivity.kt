@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.hakivin.footballleague.R
 import com.hakivin.footballleague.db.database
@@ -83,7 +83,10 @@ class EventActivity : AppCompatActivity(), EventView {
                     EventItem.SUB_AWAY to event.subAway,
                     EventItem.TYPE_EVENT to event.type)
             }
+            Snackbar.make(coordinator_lays, "This event was added to Favourite", Snackbar.LENGTH_LONG).show()
         } catch (e: SQLiteConstraintException){
+            Snackbar.make(coordinator_lays, "Something went wrong", Snackbar.LENGTH_LONG).show()
+            e.printStackTrace()
         }
     }
 
@@ -93,8 +96,10 @@ class EventActivity : AppCompatActivity(), EventView {
                 delete(EventItem.TABLE_EVENT, "(ID_EVENT = {id})",
                     "id" to eventId)
             }
+            Snackbar.make(coordinator_lays, "This event was removed from Favourite", Snackbar.LENGTH_LONG).show()
         } catch (e: SQLiteConstraintException){
-
+            Snackbar.make(coordinator_lays, "Something went wrong", Snackbar.LENGTH_LONG).show()
+            e.printStackTrace()
         }
     }
 

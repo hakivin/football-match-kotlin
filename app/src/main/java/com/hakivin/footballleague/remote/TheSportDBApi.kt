@@ -37,4 +37,8 @@ object TheSportDBApi {
     fun getSeason(idleague: Int?) : String{
         return "https://www.thesportsdb.com/api/v1/json/1/search_all_seasons.php?id=$idleague"
     }
+
+    fun searchTeam(query: String?) : String {
+        return "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=$query"
+    }
 }

@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hakivin.footballleague.R
 import com.hakivin.footballleague.model.League
-import com.hakivin.footballleague.ui.fav.FavouriteActivity
+import com.hakivin.footballleague.ui.fav.event.FavouriteActivity
+import com.hakivin.footballleague.ui.fav.team.FavTeamActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.favourite -> startActivity<FavouriteActivity>()
+            R.id.favourite2 -> startActivity<FavTeamActivity>()
         }
         return super.onOptionsItemSelected(item)
     }

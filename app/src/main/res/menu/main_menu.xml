@@ -4,8 +4,11 @@
 
     <item
         android:id="@+id/favourite"
-        android:title="@string/favourite"
+        android:title="@string/favourite_events"
         app:showAsAction="never"/>
 
-
+    <item
+        android:id="@+id/favourite2"
+        android:title="@string/favourite_teams"
+        app:showAsAction="never"/>
 </menu>

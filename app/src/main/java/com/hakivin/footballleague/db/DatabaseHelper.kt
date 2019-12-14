@@ -3,6 +3,7 @@ package com.hakivin.footballleague.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.hakivin.footballleague.model.EventItem
+import com.hakivin.footballleague.model.TeamItem
 import org.jetbrains.anko.db.*
 
 class DatabaseHelper (ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavouriteMatch.db", null, 1){
@@ -40,6 +41,18 @@ class DatabaseHelper (ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavouriteMatc
             EventItem.SUB_HOME to TEXT,
             EventItem.SUB_AWAY to TEXT,
             EventItem.TYPE_EVENT to TEXT)
+        db?.createTable(TeamItem.TABLE_TEAM, true,
+            TeamItem.ID_TEAM to TEXT + PRIMARY_KEY,
+            TeamItem.TEAM_NAME to TEXT,
+            TeamItem.TEAM_ALTERNATE to TEXT,
+            TeamItem.TEAM_BANNER to TEXT,
+            TeamItem.TEAM_DESC to TEXT,
+            TeamItem.TEAM_FORMEDYEAR to TEXT,
+            TeamItem.TEAM_LOGO to TEXT,
+            TeamItem.TEAM_LOCATION to TEXT,
+            TeamItem.TEAM_STADIUM to TEXT,
+            TeamItem.TEAM_MANAGER to TEXT,
+            TeamItem.TEAM_TYPE to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
