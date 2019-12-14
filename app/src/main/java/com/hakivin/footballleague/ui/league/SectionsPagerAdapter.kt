@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.hakivin.footballleague.R
-import com.hakivin.footballleague.ui.league.match.past.PreviousMatchFragment
+import com.hakivin.footballleague.ui.league.match.MatchFragment
 import com.hakivin.footballleague.ui.league.overview.OverviewFragment
 import com.hakivin.footballleague.ui.league.table.TableFragment
 
@@ -27,7 +27,7 @@ class SectionsPagerAdapter(private val context: Context, private val id: Int?, f
         val fragment : Fragment =
             when (position) {
                 0 -> OverviewFragment()
-                1 -> PreviousMatchFragment()
+                1 -> MatchFragment()
                 else -> TableFragment()
             }
         val bundle = Bundle()

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.league.table.TableFragment"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/team_rank"
@@ -18,8 +18,7 @@
             android:layout_height="40dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/r"
-            android:textStyle="bold"
+            tools:text="10"
             android:gravity="center"
             android:layout_marginStart="8dp" />
 
@@ -31,8 +30,6 @@
             android:gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/team"
-            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@id/team_rank"
             app:layout_constraintRight_toLeftOf="@id/team_played"/>
@@ -41,8 +38,7 @@
             android:id="@+id/team_point"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/p"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -53,8 +49,7 @@
             android:id="@+id/team_goal_diff"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/w"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -65,8 +60,7 @@
             android:id="@+id/team_goal_against"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/d"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -77,8 +71,7 @@
             android:id="@+id/team_goal_for"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/l"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -89,8 +82,7 @@
             android:id="@+id/team_lose"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/gf"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -101,8 +93,7 @@
             android:id="@+id/team_draw"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/ga"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -113,8 +104,7 @@
             android:id="@+id/team_win"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/gd"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -125,8 +115,7 @@
             android:id="@+id/team_played"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:text="@string/pt"
-            android:textStyle="bold"
+            tools:text="50"
             android:gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -134,12 +123,4 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_table"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        tools:listitem="@layout/team_item"/>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

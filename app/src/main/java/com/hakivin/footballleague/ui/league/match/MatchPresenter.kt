@@ -1,4 +1,4 @@
-package com.hakivin.footballleague.ui.league.match.past
+package com.hakivin.footballleague.ui.league.match
 
 import com.google.gson.Gson
 import com.hakivin.footballleague.model.EventItem
@@ -9,13 +9,11 @@ import com.hakivin.footballleague.remote.TheSportDBApi
 import com.hakivin.footballleague.util.CoroutineContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
-class PrevMatchPresenter(private val view: PrevMatchView,
-                         private val api: Api,
-                         private val gson: Gson,
-                         private val context: CoroutineContextProvider = CoroutineContextProvider()
+class MatchPresenter(private val view: MatchView,
+                     private val api: Api,
+                     private val gson: Gson,
+                     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
 
     fun getPreviousMatches(idLeague: Int?){

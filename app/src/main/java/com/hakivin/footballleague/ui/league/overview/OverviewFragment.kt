@@ -12,6 +12,7 @@ import com.hakivin.footballleague.model.LeagueItem
 import com.hakivin.footballleague.remote.Api
 import com.hakivin.footballleague.ui.league.LeaguePresenter
 import com.hakivin.footballleague.ui.league.LeagueView
+import org.jetbrains.anko.support.v4.runOnUiThread
 
 /**
  * A simple [Fragment] subclass.
@@ -35,7 +36,11 @@ class OverviewFragment : Fragment(), LeagueView {
     }
 
     override fun showLeague(datas: List<LeagueItem>?) {
-        league_desc.text = datas?.get(0)?.description
+        runOnUiThread {
+            if (league_desc != null) {
+                league_desc.text = datas?.get(0)?.description
+            }
+        }
     }
 
 }

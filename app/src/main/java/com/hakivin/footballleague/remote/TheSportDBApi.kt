@@ -26,6 +26,10 @@ object TheSportDBApi {
         return "https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=$id"
     }
 
+    fun getAllTeams(id: Int?) : String {
+        return "https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=$id"
+    }
+
     fun getStandings(idLeague: Int?, season: String?) : String{
         return "https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=$idLeague&s=$season"
     }

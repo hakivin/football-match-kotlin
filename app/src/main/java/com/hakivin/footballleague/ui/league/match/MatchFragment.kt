@@ -1,4 +1,4 @@
-package com.hakivin.footballleague.ui.league.match.past
+package com.hakivin.footballleague.ui.league.match
 
 import android.os.Bundle
 import android.view.*
@@ -13,10 +13,11 @@ import com.hakivin.footballleague.remote.Api
 import kotlinx.android.synthetic.main.fragment_previous_match.*
 import org.jetbrains.anko.support.v4.runOnUiThread
 
-class PreviousMatchFragment : Fragment(), PrevMatchView {
+class MatchFragment : Fragment(),
+    MatchView {
     private lateinit var rvPrev : RecyclerView
     private lateinit var rvNext : RecyclerView
-    private lateinit var presenter : PrevMatchPresenter
+    private lateinit var presenter : MatchPresenter
     private var idLeague : Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,7 +33,12 @@ class PreviousMatchFragment : Fragment(), PrevMatchView {
         rvNext = rv_next
         val request = Api()
         val gson = Gson()
-        presenter = PrevMatchPresenter(this, request, gson)
+        presenter =
+            MatchPresenter(
+                this,
+                request,
+                gson
+            )
         presenter.getPreviousMatches(idLeague)
         presenter.getNextMatches(idLeague)
     }
@@ -75,14 +81,22 @@ class PreviousMatchFragment : Fragment(), PrevMatchView {
     override fun showPastEvents(list: List<EventItem>?) {
         runOnUiThread {
             rvPrev.layoutManager = LinearLayoutManager(context)
-            rvPrev.adapter = list?.let { PrevMatchAdapter(it) }
+            rvPrev.adapter = list?.let {
+                MatchAdapter(
+                    it
+                )
+            }
         }
     }
 
     override fun showNextEvents(list: List<EventItem>?) {
         runOnUiThread {
             rvNext.layoutManager = LinearLayoutManager(context)
-            rvNext.adapter = list?.let { PrevMatchAdapter(it) }
+            rvNext.adapter = list?.let {
+                MatchAdapter(
+                    it
+                )
+            }
         }
     }
 
@@ -100,8 +114,16 @@ class PreviousMatchFragment : Fragment(), PrevMatchView {
             }
             rvPrev.layoutManager = LinearLayoutManager(context)
             rvNext.layoutManager = LinearLayoutManager(context)
-            rvPrev.adapter = list?.let { PrevMatchAdapter(prevList) }
-            rvNext.adapter = list?.let { PrevMatchAdapter(nextList) }
+            rvPrev.adapter = list?.let {
+                MatchAdapter(
+                    prevList
+                )
+            }
+            rvNext.adapter = list?.let {
+                MatchAdapter(
+                    nextList
+                )
+            }
         }
     }
 }

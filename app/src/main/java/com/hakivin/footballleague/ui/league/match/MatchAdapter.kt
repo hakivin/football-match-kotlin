@@ -1,4 +1,4 @@
-package com.hakivin.footballleague.ui.league.match.past
+package com.hakivin.footballleague.ui.league.match
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.hakivin.footballleague.model.EventItem
 import com.hakivin.footballleague.ui.event.EventActivity
 import org.jetbrains.anko.*
 
-class PrevMatchAdapter (private val items: List<EventItem>) : RecyclerView.Adapter<PrevMatchAdapter.ViewHolder>() {
+class MatchAdapter (private val items: List<EventItem>) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.match_item, parent, false)

@@ -1,7 +1,6 @@
 package com.hakivin.footballleague.ui.league
 
 import android.os.Bundle
-import android.view.Menu
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -15,8 +14,6 @@ import com.hakivin.footballleague.R
 import com.hakivin.footballleague.model.LeagueItem
 import com.hakivin.footballleague.remote.Api
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_league.*
-import kotlinx.android.synthetic.main.fragment_overview.*
 import org.jetbrains.anko.find
 
 class LeagueActivity : AppCompatActivity(), LeagueView {
@@ -51,34 +48,30 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
     }
-//
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.action_menu, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
+
     override fun showLeague(datas: List<LeagueItem>?) {
-        val data = datas?.get(0)
-        val collapsingToolbarLayout =
-            find(R.id.collapsingToolbarLayout) as CollapsingToolbarLayout
-        val appBarLayout = find(R.id.appBarLayout) as AppBarLayout
-        appBarLayout.addOnOffsetChangedListener(object : OnOffsetChangedListener {
-            var isShow = true
-            var scrollRange = -1
-            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.totalScrollRange
+        runOnUiThread {
+            val data = datas?.get(0)
+            val collapsingToolbarLayout =
+                find(R.id.collapsingToolbarLayout) as CollapsingToolbarLayout
+            val appBarLayout = find(R.id.appBarLayout) as AppBarLayout
+            appBarLayout.addOnOffsetChangedListener(object : OnOffsetChangedListener {
+                var isShow = true
+                var scrollRange = -1
+                override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+                    if (scrollRange == -1) {
+                        scrollRange = appBarLayout.totalScrollRange
+                    }
+                    if (scrollRange + verticalOffset == 0) {
+                        collapsingToolbarLayout.title = data?.name
+                        isShow = true
+                    } else if (isShow) {
+                        collapsingToolbarLayout.title = " "
+                        isShow = false
+                    }
                 }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.title = data?.name
-                    isShow = true
-                } else if (isShow) {
-                    collapsingToolbarLayout.title =
-                        " " //careful there should a space between double quote otherwise it wont work
-                    isShow = false
-                }
-            }
-        })
-        Picasso.get().load(data?.badge).into(imgLogo)
-        league_desc.text = data?.description
+            })
+            Picasso.get().load(data?.badge).into(imgLogo)
+        }
     }
 }
