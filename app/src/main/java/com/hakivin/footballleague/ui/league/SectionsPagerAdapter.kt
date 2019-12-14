@@ -9,11 +9,13 @@ import com.hakivin.footballleague.R
 import com.hakivin.footballleague.ui.league.match.MatchFragment
 import com.hakivin.footballleague.ui.league.overview.OverviewFragment
 import com.hakivin.footballleague.ui.league.table.TableFragment
+import com.hakivin.footballleague.ui.league.teams.TeamFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
     R.string.tab_text_2,
-    R.string.tab_text_3
+    R.string.tab_text_3,
+    R.string.tab_text_4
 )
 
 /**
@@ -28,7 +30,8 @@ class SectionsPagerAdapter(private val context: Context, private val id: Int?, f
             when (position) {
                 0 -> OverviewFragment()
                 1 -> MatchFragment()
-                else -> TableFragment()
+                2 -> TableFragment()
+                else -> TeamFragment()
             }
         val bundle = Bundle()
         if (id != null) {

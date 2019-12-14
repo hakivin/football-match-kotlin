@@ -9,8 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hakivin.footballleague.R
 import com.hakivin.footballleague.model.TableItem
+import com.hakivin.footballleague.ui.team.TeamActivity
 import kotlinx.android.synthetic.main.team_item.view.*
 import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.startActivity
 
 class TableAdapter (private val list : List<TableItem>) :
     RecyclerView.Adapter<TableAdapter.TableViewHolder>() {
@@ -46,7 +48,7 @@ class TableAdapter (private val list : List<TableItem>) :
             if (position % 2 == 0)
                 itemView.backgroundColor = ContextCompat.getColor(itemView.context, R.color.colorAccentLight)
             itemView.setOnClickListener {
-
+                itemView.context.startActivity<TeamActivity>(TeamActivity.EXTRA_TEAM to table.teamId)
             }
         }
     }
